@@ -72,6 +72,7 @@ Make sure that the model does not overfit the training dataset. As soon as some 
   max_depth: [3, 5, 7]
   learning_rate: [0.01, 0.05, 0.1]
 
+
 5) Try multiple linear or polynomial regression and based on it understand which features are statistically significant predictors.
 
 6) Try CatBoost
