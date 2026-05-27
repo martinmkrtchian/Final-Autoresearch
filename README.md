@@ -22,7 +22,6 @@ An automated machine learning research framework that iteratively builds and imp
 | `evaluate_test.py` | Trains best model on full training data, scores on test set, saves `test_predictions.csv` |
 | `experiments.json` | Auto-generated log of all experiments (train/val/test AUC, runtime, status) |
 | `performance.png` | Auto-generated chart: ROC-AUC progress + experiment summary table |
-| `backfill_test_auc.py` | One-time utility to retroactively compute test AUC for historical experiments |
 
 ---
 
