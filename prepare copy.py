@@ -102,17 +102,19 @@ def main():
     ax2 = axes[1]
     ax2.axis("off")
 
-    col_labels = ["#", "Description", "Train AUC", "Val AUC", "Runtime", "Status"]
+    col_labels = ["#", "Description", "Train AUC", "Val AUC", "Holdout AUC", "Runtime", "Status"]
     table_data = []
     for _, row in df.iterrows():
         if row["timeout"]:
             status        = "⏱ TIMEOUT"
             train_auc_str = "—"
             val_auc_str   = "—"
+            holdout_auc_str = "—"
         else:
             status        = "✓ KEPT" if row["kept"] else "✗ DISC."
             train_auc_str = f"{row['train_roc_auc']:.4f}"
             val_auc_str   = f"{row['val_roc_auc']:.4f}"
+            holdout_auc_str = f"{row['holdout_roc_auc']:.4f}"
         runtime_str = f"{row['runtime_s']:.0f}s" if pd.notna(row.get("runtime_s")) else "—"
         desc = "\n".join(textwrap.wrap(row["description"], width=42))
         table_data.append([
