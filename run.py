@@ -69,7 +69,8 @@ def main():
 
     try:
         training_data = pd.read_csv('training_data.csv')
-
+        holdout_data = pd.read_csv('test_data.csv')
+        
         feature_cols = [
         "Return_prev_5d", "Return_prev_10d", "Close_yesterday", 'Volatility',
         "Oil_Open", "Oil_volume", 'Return_prev_5d_oil', 'Return_prev_10d_oil',
@@ -94,13 +95,19 @@ def main():
         thr = 0.5
         train_auc = roc_auc_score(y_train, train_proba>thr)
         val_auc   = roc_auc_score(y_test,   val_proba>thr)
-
+        
+        holdout_proba = model.predict_proba(holdout_data[feature_cols])
+        holdout_auc = roc_auc_score(holdout_data['Target'], holdout_proba>thr)
+        
         elapsed = time.time() - start_time
         clear_timeout()
 
         print(f"\nTrain ROC-AUC : {train_auc:.4f}")
         print(f"Val   ROC-AUC : {val_auc:.4f}")
+        print(f"Holdout   ROC-AUC : {holdout_auc:.4f}")
         print(f"Runtime       : {elapsed:.1f}s / {RUNTIME_BUDGET}s budget")
+
+
 
         # 6. Compare & log
         prev_best = max(
@@ -122,6 +129,7 @@ def main():
             "kept":          kept,
             "timeout":       False,
         }
+
 
     except TimeoutError:
         clear_timeout()
