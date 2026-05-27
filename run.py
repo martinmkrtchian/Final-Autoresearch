@@ -119,12 +119,14 @@ def main():
 
         print(f"Previous best : {prev_best:.4f}")
         print(f"Status        : {status}")
+        
 
         entry = {
             "timestamp":     datetime.datetime.now().isoformat(),
             "description":   description,
             "train_roc_auc": round(train_auc, 4),
             "val_roc_auc":   round(val_auc, 4),
+            "holdout_roc_auc":   round(holdout_auc, 4), 
             "runtime_s":     round(elapsed, 1),
             "kept":          kept,
             "timeout":       False,
