@@ -60,13 +60,13 @@ After all iterations:
 Make sure that the model does not overfit the training dataset. As soon as some overfitting appears, regularize the model. 
 
 ## Suggested Ideas to Try
-1)Switch estimator to GradientBoostingClassifier (after leakage fix)
+1) Switch estimator to GradientBoostingClassifier (after leakage fix)
 
-2)Try class_weight="balanced" to handle class imbalance
+2) Try class_weight="balanced" to handle class imbalance
 
-3)Feature selection: Drop low-importance features (use permutation importance)
+3) Feature selection: Drop low-importance features (use permutation importance)
 
-4)Hyperparameter tuning:
+4) Hyperparameter tuning:
 
   n_estimators: [100, 200, 400]
   max_depth: [3, 5, 7]
