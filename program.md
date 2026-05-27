@@ -54,6 +54,9 @@ After all iterations:
 3. Print a summary table of all experiments (kept / discarded / timeout)
 
 ---
+## An important note
+
+Make sure that the model does not overfit the training dataset. As soon as some overfitting appears, regularize the model. 
 
 ## Suggested Ideas to Try
 1)Switch estimator to GradientBoostingClassifier (after leakage fix)
@@ -76,3 +79,4 @@ After all iterations:
 9) Try Random Forest with different hyperparameters
 10) Try ensembles with some of the models used above that perform well.
 11) Based on the results think about what could be tuned. If certain model works better, stick to it and tune the hyperparameters.
+12) Avoid overfitting the model to the training dataset. The training and validation scores should be similar. The difference should be no larger than 0.15. 
