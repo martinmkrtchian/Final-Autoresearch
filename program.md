@@ -22,11 +22,12 @@ Each experiment has a **5-minute wall-clock budget**. If exceeded:
 ## Files
 | File | Purpose |
 |------|---------|
-| `training_data.csv` | The dataset that includes both predictors and the dependent variable |
+| `training_data.csv` | 80% of the data that the model will use for training and validation |
+| `test_data.csv` | 20% of the data used to evaluate the performance of the model |
 | `model.py` | Data loading, feature engineering, model definition — **edited each iteration** |
 | `run.py` | Trains model, evaluates ROC-AUC, enforces 5-min budget, logs to `experiments.json` |
 | `prepare.py` | Reads `experiments.json`, generates `performance.png` |
-| `evaluate_test.py` | Final step only — scores best model on the 20% validation subset |
+
 
 
 ---
@@ -46,12 +47,12 @@ Then enter the AutoResearch loop:
 4. Compare the new `val_roc_auc` to the current best.
    - If improved: **KEEP** the change, note the new best.
    - If worse or TIMEOUT: **REVERT** `model.py` to the previous version.
-5. Repeat from step 1. Try **at least 15 different ideas**.
+5. Calculate the ROC-AUC on the test_data.csv dataset
+6. Repeat from step 1. Try **at least 15 different ideas**.
 
 After all iterations:
 1. Run `python prepare.py` → generates `performance.png`
-2. Run `python evaluate_test.py` → scores best model on validation subset
-3. Print a summary table of all experiments (kept / discarded / timeout)
+2. Print a summary table of all experiments (kept / discarded / timeout)
 
 ---
 ## An important note
